@@ -1,0 +1,137 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	list-style: none;
+}
+
+body{
+    background: scroll greenyellow;
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+#container{
+	width: 800px;
+	overflow: hidden;
+	margin: 40px auto;
+}
+
+h1{
+	color: black;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+ul.thumbs li{
+	float: left;
+	margin-bottom: 30px;
+	margin-right: 10px;
+    margin-left: 50px;
+}
+
+ul.thumbs a{
+	display: block;
+	position: relative;
+	width: 150px;
+	height: 125px;
+	border: 4px solid transparent;
+	font: bold 12px Arial, sans-sarif;
+	color: #515151;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px rgba(255,255,255,.25), inset 1px 1px 0px rgba(0,0,0,.15);
+}
+
+ul.thumbs img{
+	border: lightslategray solid 4px;
+}
+
+ul.slides{
+	overflow: hidden;
+	clear: both;
+	border: lightslategray solid 4px;
+}
+
+ul.slides,
+ul.slides li,
+ul.slides a,
+ul.slides img{
+	width: 750px;
+	height: 550px;
+	position: relative;
+}
+
+ul.slides li{
+    position: absolute;
+    z-index: 50;
+}
+
+ul.thumbs li a span{
+    visibility: hidden;
+}
+
+ul.thumbs li a:hover span{
+    visibility: unset !important;
+	position: absolute;
+	z-index: 101;
+	bottom: -30px;
+	left: -22px;
+	display: block;
+	width: 150px;
+	height: 35px;
+	text-align: center;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 0px rgba(0,0,0,.4);
+	-moz-box-shadow: 0px 1px 0px rgba(0,0,0,.4);
+	box-shadow: 0px 1px 0px rgba(0,0,0,.4);
+	background: #fff;
+	background: -webkit-linear-gradient(top, #fff 0%, #bcbcbc 100%);
+	background: linear-gradient(top, #fff 0%, #bcbcbc 100%);
+}
+
+ul.thumbs li a:hover span:before{
+	width: 0;
+	height: 0;
+	border-bottom: 5px solid #fff;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	content: '';
+	position: absolute;
+	top: -5px;
+	left: 44px;
+}
+
+/*these are animations for the images*/
+@keyframes slide
+{
+    0% {
+        left: -500px;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+ul.slides li:target{
+    z-index: 100;
+    animation: slide;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+/*this makes sure that the image slides over the prvious image, without this the background resets*/
+@keyframes slideOver{
+    0% {
+        z-index: 75;
+    }
+    100% {
+        z-index: 75;
+    }   
+}
+
+ul.slides li:not(:target)
+{
+    animation-name: slideOver;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
